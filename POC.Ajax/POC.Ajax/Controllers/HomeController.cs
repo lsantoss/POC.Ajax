@@ -7,11 +7,13 @@ namespace POC.Ajax.Controllers
 {
     public class HomeController : Controller
     {
-        private static List<CustomerViewModel> customers = new();
+        private static List<CustomerViewModel> customers = new()
+        {
+            new CustomerViewModel() { Id = 1, Name = "Lucas", Birth = DateTime.Now, Gender = Enums.EGender.Male }
+        };
 
         public ActionResult Index()
         {
-            customers.Add(new CustomerViewModel() { Id = 1, Name = "Lucas", Birth = DateTime.Now, Gender = Enums.EGender.Male });
             return View(customers);
         }
 
@@ -20,23 +22,21 @@ namespace POC.Ajax.Controllers
             return View();
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create([FromBody] CustomerViewModel[] request)
         {
-            try
+            foreach(var customer in request)
             {
-                return RedirectToAction(nameof(Index));
+                customer.Id = customers.Max(x => x.Id) + 1;
+                customers.Add(customer);
             }
-            catch
+
+            return Json(new
             {
-                return View();
-            }
+                sucesso = true,
+                mensagem = "Customer inserted successfully!",
+                customers = customers
+            });
         }
 
         public ActionResult Edit(int id)
@@ -45,7 +45,6 @@ namespace POC.Ajax.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
             try
@@ -64,7 +63,6 @@ namespace POC.Ajax.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try

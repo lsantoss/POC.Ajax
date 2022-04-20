@@ -24,26 +24,35 @@
                 </th>
             </tr>
         </thead>
-        <tbody>
-            @foreach (var item in Model) {
+        <tbody id="tbodyList">
+            @if(Model != null && Model.Count() > 0)
+            {
+                foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Birth)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="callEditView(@item.Id)">Edit</button> 
+                            <button class="btn btn-secondary" onclick="callDetailsView(@item.Id)">Details</button> 
+                            <button class="btn btn-secondary" onclick="callDeleteView(@item.Id)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Birth)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Gender)
-                    </td>
-                    <td>
-                        <button class="btn btn-secondary" onclick="callEditView(@item.Id)">Edit</button> 
-                        <button class="btn btn-secondary" onclick="callDetailsView(@item.Id)">Details</button> 
-                        <button class="btn btn-secondary" onclick="callDeleteView(@item.Id)">Delete</button>
-                    </td>
+                    <td colspan="5" align="center">No registered customer</td>
                 </tr>
             }
         </tbody>
