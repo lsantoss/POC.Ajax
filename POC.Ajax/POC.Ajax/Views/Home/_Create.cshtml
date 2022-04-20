@@ -1,0 +1,29 @@
+﻿<div id="divCreate" hidden>
+    <h4>Create new customer</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form>
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <input type="text" name="Name" id="Name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Birth</label>
+                    <input type="date" name="Birth" id="Birth" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Gender</label>
+                    <input type="number" name="Gender" id="Gender" class="form-control" min="0" max="2"/>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="button" value="Create" class="btn btn-primary" />
+                    <input type="button" value="Voltar" class="btn btn-dark" onclick="backToIndexView()"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Home/Create.js"></script>

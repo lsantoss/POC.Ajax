@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using POC.Ajax.Models.Customers;
 using POC.Ajax.Models.Shared;
 using System.Diagnostics;
 
@@ -6,9 +7,12 @@ namespace POC.Ajax.Controllers
 {
     public class HomeController : Controller
     {
+        private static List<CustomerViewModel> customers = new();
+
         public ActionResult Index()
         {
-            return View();
+            customers.Add(new CustomerViewModel() { Id = 1, Name = "Lucas", Birth = DateTime.Now, Gender = Enums.EGender.Male });
+            return View(customers);
         }
 
         public ActionResult Details(int id)
