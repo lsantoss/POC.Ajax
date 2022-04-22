@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace POC.Ajax.Controllers
 {
-    public class HomeController : Controller
+    public class CustomerController : Controller
     {
         private static List<CustomerViewModel> customers = new();
 

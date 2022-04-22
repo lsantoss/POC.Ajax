@@ -21,7 +21,7 @@ function addToCreateList() {
 function createAjax() {
     if (customersToCreateList.length > 0) {
         $.ajax({
-            url: '/Home/Create/',
+            url: '/Customer/Create/',
             type: 'POST',
             data: JSON.stringify(customersToCreateList),
             dataType: 'json',

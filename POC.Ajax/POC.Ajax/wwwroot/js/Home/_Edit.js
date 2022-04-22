@@ -28,7 +28,7 @@ function prepareCustomerData(id, name, birth, gender) {
 function editAjax(customer) {
     console.log(customer);
     $.ajax({
-        url: '/Home/Edit/',
+        url: '/Customer/Edit/',
         type: 'POST',
         data: JSON.stringify(customer),
         dataType: 'json',

@@ -3,9 +3,9 @@
     document.getElementById("divCreate").hidden = false;
 }
 
-function callEditView(id) {
+function callEditViewAjax(id) {
     $.ajax({
-        url: '/Home/Edit/' + id,
+        url: '/Customer/Edit/' + id,
         type: 'GET',
         dataType: 'json',
         contentType: 'application/json',
@@ -21,11 +21,11 @@ function callEditView(id) {
     });
 }
 
-function callDetailsView(id) {
+function callDetailsViewAjax(id) {
     console.log(id);
 }
 
-function callDeleteView(id) {
+function callDeleteViewAjax(id) {
     console.log(id);
 }
 
@@ -67,9 +67,9 @@ function prepareTableList(customers) {
 
             let tdActions = document.createElement("td");
             tdActions.innerHTML =
-                "<button class='btn btn-secondary' onclick='callEditView(" + customers[i].id + ")'>Edit</button> " +
-                "<button class='btn btn-secondary' onclick='callDetailsView(" + customers[i].id +")'>Details</button> " +
-                "<button class='btn btn-secondary' onclick='callDeleteView(" + customers[i].id + ")'>Delete</button> ";
+                "<button class='btn btn-secondary' onclick='callEditViewAjax(" + customers[i].id + ")'>Edit</button> " +
+                "<button class='btn btn-secondary' onclick='callDetailsViewAjax(" + customers[i].id +")'>Details</button> " +
+                "<button class='btn btn-secondary' onclick='callDeleteViewAjax(" + customers[i].id + ")'>Delete</button> ";
             tr.appendChild(tdActions);
         }
     }
