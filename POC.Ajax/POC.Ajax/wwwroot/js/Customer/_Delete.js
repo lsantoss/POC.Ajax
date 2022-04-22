@@ -9,6 +9,12 @@
         dataType: 'json',
         contentType: 'application/json',
         async: false,
+        beforeSend: function () {
+            document.getElementById("div-loader").hidden = false;
+        },
+        complete: function () {
+            document.getElementById("div-loader").hidden = true;
+        },
         success: function (data) {
             if (data.success === true) {
                 prepareTableList(data.customers);
@@ -18,6 +24,9 @@
             else {
                 toastr.error(data.message);
             }
+        },
+        error: function () {
+            toastr.error("Sorry, an error occurred during your request.");
         }
     });
 }

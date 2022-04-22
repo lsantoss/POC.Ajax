@@ -10,6 +10,12 @@ function callEditViewAjax(id) {
         dataType: 'json',
         contentType: 'application/json',
         async: false,
+        beforeSend: function () {
+            document.getElementById("div-loader").hidden = false;
+        },
+        complete: function () {
+            document.getElementById("div-loader").hidden = true;
+        },
         success: function (data) {
             document.getElementById("IdEdit").value = data.id;
             document.getElementById("NameEdit").value = data.name;
@@ -17,6 +23,9 @@ function callEditViewAjax(id) {
             document.getElementById("GenderEdit").value = data.gender;
             document.getElementById("divEdit").hidden = false;
             document.getElementById("divList").hidden = true;
+        },
+        error: function () {
+            toastr.error("Sorry, an error occurred during your request.");
         }
     });
 }
@@ -28,6 +37,12 @@ function callDetailsViewAjax(id) {
         dataType: 'json',
         contentType: 'application/json',
         async: false,
+        beforeSend: function () {
+            document.getElementById("div-loader").hidden = false;
+        },             
+        complete: function () {
+            document.getElementById("div-loader").hidden = true;
+        },
         success: function (data) {
             document.getElementById("IdDetails").value = data.id;
             document.getElementById("NameDetails").value = data.name;
@@ -35,6 +50,9 @@ function callDetailsViewAjax(id) {
             document.getElementById("GenderDetails").value = prepareGenderText(data.gender);
             document.getElementById("divDetails").hidden = false;
             document.getElementById("divList").hidden = true;
+        },
+        error: function () {
+            toastr.error("Sorry, an error occurred during your request.");
         }
     });
 }
@@ -46,6 +64,12 @@ function callDeleteViewAjax(id) {
         dataType: 'json',
         contentType: 'application/json',
         async: false,
+        beforeSend: function () {
+            document.getElementById("div-loader").hidden = false;
+        },
+        complete: function () {
+            document.getElementById("div-loader").hidden = true;
+        },
         success: function (data) {
             document.getElementById("IdDelete").value = data.id;
             document.getElementById("NameDelete").value = data.name;
@@ -53,6 +77,9 @@ function callDeleteViewAjax(id) {
             document.getElementById("GenderDelete").value = prepareGenderText(data.gender);
             document.getElementById("divDelete").hidden = false;
             document.getElementById("divList").hidden = true;
+        },
+        error: function () {
+            toastr.error("Sorry, an error occurred during your request.");
         }
     });
 }

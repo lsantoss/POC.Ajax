@@ -67,3 +67,18 @@ button.accept-policy {
 td {
     vertical-align: middle;
 }
+
+#div-loader {
+    z-index: 99999;
+    position: absolute;
+    height: auto;
+    width: auto;
+    margin-top: 300px;
+    margin-left: 50%;
+    text-align: center;
+}
+
+#loader {
+    height: 60px;
+    width: 60px;
+}
