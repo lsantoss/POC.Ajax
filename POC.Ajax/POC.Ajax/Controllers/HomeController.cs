@@ -7,10 +7,7 @@ namespace POC.Ajax.Controllers
 {
     public class HomeController : Controller
     {
-        private static List<CustomerViewModel> customers = new()
-        {
-            new CustomerViewModel() { Id = 1, Name = "Lucas", Birth = DateTime.Now, Gender = Enums.EGender.Male }
-        };
+        private static List<CustomerViewModel> customers = new();
 
         public ActionResult Index()
         {
@@ -27,14 +24,14 @@ namespace POC.Ajax.Controllers
         {
             foreach(var customer in request)
             {
-                customer.Id = customers.Max(x => x.Id) + 1;
+                customer.Id = customers.Count > 0 ? customers.Max(x => x.Id) + 1 : 1;
                 customers.Add(customer);
             }
 
             return Json(new
             {
-                sucesso = true,
-                mensagem = "Customer inserted successfully!",
+                success = true,
+                message = "Customer inserted successfully!",
                 customers = customers
             });
         }

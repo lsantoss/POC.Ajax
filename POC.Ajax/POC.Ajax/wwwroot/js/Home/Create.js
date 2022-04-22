@@ -28,13 +28,13 @@ function create() {
             contentType: 'application/json',
             async: false,
             success: function (data) {
-                if (data.sucesso === true) {
-                    prepareTableList();
+                if (data.success === true) {
+                    prepareTableList(data.customers);
                     backToIndexView();
-                    toastr.success(data.mensagem);
+                    toastr.success(data.message);
                 }
                 else {
-                    toastr.error(data.mensagem);
+                    toastr.error(data.message);
                 }
             }
         });
@@ -56,7 +56,7 @@ function backToIndexView() {
 function clearForm() {
     document.getElementById("Name").value = "";
     document.getElementById("Birth").value = "";
-    document.getElementById("Gender").value = "";
+    document.getElementById("Gender").value = "0";
 }
 
 function customersToCreateListAdd(name, birth, gender) {
@@ -100,7 +100,7 @@ function prepareTableToCreateList() {
             else if (customersToCreateList[i].gender == "1") {
                 genderText = "Female";
             }
-            if (customersToCreateList[i].gender == "2") {
+            else if (customersToCreateList[i].gender == "2") {
                 genderText = "Other";
             }
 
@@ -119,9 +119,4 @@ function prepareTableToCreateList() {
         td.innerText = "No customers added to the list";
         tr.appendChild(td);
 	}
-}
-
-function prepareTableList() {
-    let tbody = document.getElementById("tbodyList");
-    tbody.innerText = "";
 }
