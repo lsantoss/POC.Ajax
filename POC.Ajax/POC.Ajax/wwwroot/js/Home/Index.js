@@ -13,7 +13,7 @@ function callEditViewAjax(id) {
         success: function (data) {
             document.getElementById("IdEdit").value = data.id;
             document.getElementById("NameEdit").value = data.name;
-            document.getElementById("BirthEdit").value = prepareDate_dd_MM_yyyy(data.birth);
+            document.getElementById("BirthEdit").value = prepareDate_yyyy_MM_dd(data.birth);
             document.getElementById("GenderEdit").value = data.gender;
             document.getElementById("divEdit").hidden = false;
             document.getElementById("divList").hidden = true;
@@ -31,7 +31,7 @@ function callDetailsViewAjax(id) {
         success: function (data) {
             document.getElementById("IdDetails").value = data.id;
             document.getElementById("NameDetails").value = data.name;
-            document.getElementById("BirthDetails").value = prepareDate_dd_MM_yyyy(data.birth);
+            document.getElementById("BirthDetails").value = prepareDate_yyyy_MM_dd(data.birth);
             document.getElementById("GenderDetails").value = prepareGenderText(data.gender);
             document.getElementById("divDetails").hidden = false;
             document.getElementById("divList").hidden = true;
@@ -40,7 +40,21 @@ function callDetailsViewAjax(id) {
 }
 
 function callDeleteViewAjax(id) {
-    console.log(id);
+    $.ajax({
+        url: '/Customer/Delete/' + id,
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        async: false,
+        success: function (data) {
+            document.getElementById("IdDelete").value = data.id;
+            document.getElementById("NameDelete").value = data.name;
+            document.getElementById("BirthDelete").value = prepareDate_yyyy_MM_dd(data.birth);
+            document.getElementById("GenderDelete").value = prepareGenderText(data.gender);
+            document.getElementById("divDelete").hidden = false;
+            document.getElementById("divList").hidden = true;
+        }
+    });
 }
 
 function prepareTableList(customers) {

@@ -26,7 +26,6 @@ function prepareCustomerData(id, name, birth, gender) {
 }
 
 function editAjax(customer) {
-    console.log(customer);
     $.ajax({
         url: '/Customer/Edit/',
         type: 'POST',
@@ -48,7 +47,6 @@ function editAjax(customer) {
 }
 
 function editBackToIndexView() {
-    prepareTableToCreateList();
     document.getElementById("divEdit").hidden = true;
     document.getElementById("divList").hidden = false;
 }

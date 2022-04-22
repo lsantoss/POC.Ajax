@@ -18,7 +18,7 @@ toastr.options = {
 };
 
 //Common Functions
-function prepareDate_dd_MM_yyyy(date) {
+function prepareDate_yyyy_MM_dd(date) {
     date = new Date(date);
     var day = date.getDate();
     var month = date.getMonth() + 1;

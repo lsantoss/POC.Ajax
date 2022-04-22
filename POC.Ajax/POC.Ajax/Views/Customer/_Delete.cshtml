@@ -1,0 +1,34 @@
+﻿<div id="divDelete" hidden>
+    <h4>Delete customer</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form>
+                <div class="form-group">
+                    <label class="control-label">Id</label>
+                    <input type="number" name="IdDelete" id="IdDelete" class="form-control" readonly/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <input type="text" name="NameDelete" id="NameDelete" class="form-control" readonly/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Birth</label>
+                    <input type="date" name="BirthDelete" id="BirthDelete" class="form-control" readonly/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Birth</label>
+                    <input type="text" name="GenderDelete" id="GenderDelete" class="form-control" readonly/>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="button" value="Delete" class="btn btn-danger"  onclick="deleteAjax()"/>
+                    <input type="button" value="Voltar" class="btn btn-secondary" onclick="deleteBackToIndexView()"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Home/_Delete.js"></script>
