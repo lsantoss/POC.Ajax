@@ -16,13 +16,14 @@ namespace POC.Ajax.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public JsonResult Details(int id)
         {
-            return View();
+            var customer = customers.Where(x => x.Id == id).FirstOrDefault();
+            return Json(customer);
         }
 
         [HttpPost]
-        public ActionResult Create([FromBody] CustomerViewModel[] request)
+        public JsonResult Create([FromBody] CustomerViewModel[] request)
         {
             foreach(var customer in request)
             {
@@ -39,14 +40,14 @@ namespace POC.Ajax.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public JsonResult Edit(int id)
         {
             var customer = customers.Where(x => x.Id == id).FirstOrDefault();
             return Json(customer);
         }
 
         [HttpPost]
-        public ActionResult Edit([FromBody] CustomerViewModel request)
+        public JsonResult Edit([FromBody] CustomerViewModel request)
         {
             var customer = customers.Where(x => x.Id == request.Id).FirstOrDefault();
             if(customer != null)
@@ -67,22 +68,25 @@ namespace POC.Ajax.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public JsonResult Delete(int id)
         {
-            return View();
+            var customer = customers.Where(x => x.Id == id).FirstOrDefault();
+            return Json(customer);
         }
 
         [HttpPost]
-        public ActionResult Delete([FromBody] CustomerViewModel request)
+        public JsonResult Delete([FromBody] CustomerViewModel request)
         {
-            try
+            var customer = customers.Where(x => x.Id == request.Id).FirstOrDefault();
+            if (customer != null)
+                customers.Remove(customer);
+
+            return Json(new
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                success = true,
+                message = "Customer delete successfully!",
+                customers = customers.OrderBy(x => x.Id)
+            });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
