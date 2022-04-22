@@ -22,7 +22,21 @@ function callEditViewAjax(id) {
 }
 
 function callDetailsViewAjax(id) {
-    console.log(id);
+    $.ajax({
+        url: '/Customer/Details/' + id,
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        async: false,
+        success: function (data) {
+            document.getElementById("IdDetails").value = data.id;
+            document.getElementById("NameDetails").value = data.name;
+            document.getElementById("BirthDetails").value = prepareDate_dd_MM_yyyy(data.birth);
+            document.getElementById("GenderDetails").value = prepareGenderText(data.gender);
+            document.getElementById("divDetails").hidden = false;
+            document.getElementById("divList").hidden = true;
+        }
+    });
 }
 
 function callDeleteViewAjax(id) {
@@ -47,22 +61,11 @@ function prepareTableList(customers) {
             tr.appendChild(tdName);
 
             let tdBirth = document.createElement("td");
-            tdBirth.innerText = customers[i].birth;
+            tdBirth.innerText = customers[i].birth.split('T')[0];;
             tr.appendChild(tdBirth);
 
-            let genderText = "";
-            if (customers[i].gender == "0") {
-                genderText = "Male";
-            }
-            else if (customers[i].gender == "1") {
-                genderText = "Female";
-            }
-            else if (customers[i].gender == "2") {
-                genderText = "Other";
-            }
-
             let tdGender = document.createElement("td");
-            tdGender.innerText = genderText;
+            tdGender.innerText = prepareGenderText(customers[i].gender);
             tr.appendChild(tdGender);
 
             let tdActions = document.createElement("td");
@@ -72,5 +75,17 @@ function prepareTableList(customers) {
                 "<button class='btn btn-secondary' onclick='callDeleteViewAjax(" + customers[i].id + ")'>Delete</button> ";
             tr.appendChild(tdActions);
         }
+    }
+}
+
+function prepareGenderText(value) {
+    if (value == "0") {
+        return "Male";
+    }
+    else if (value == "1") {
+        return "Female";
+    }
+    else if (value == "2") {
+        return "Other";
     }
 }

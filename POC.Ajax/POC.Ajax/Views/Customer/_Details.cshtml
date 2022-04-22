@@ -1,0 +1,33 @@
+﻿<div id="divDetails" hidden>
+    <h4>Details of customer</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form>
+                <div class="form-group">
+                    <label class="control-label">Id</label>
+                    <input type="number" name="IdDetails" id="IdDetails" class="form-control" readonly/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <input type="text" name="NameDetails" id="NameDetails" class="form-control" readonly/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Birth</label>
+                    <input type="date" name="BirthDetails" id="BirthDetails" class="form-control" readonly/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Birth</label>
+                    <input type="text" name="GenderDetails" id="GenderDetails" class="form-control" readonly/>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="button" value="Voltar" class="btn btn-secondary" onclick="detailsBackToIndexView()"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Home/_Details.js"></script>

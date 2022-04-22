@@ -93,19 +93,8 @@ function prepareTableToCreateList() {
             tdBirth.innerText = customersToCreateList[i].birth;
             tr.appendChild(tdBirth);
 
-            let genderText = "";
-            if (customersToCreateList[i].gender == "0") {
-                genderText = "Male";
-            }
-            else if (customersToCreateList[i].gender == "1") {
-                genderText = "Female";
-            }
-            else if (customersToCreateList[i].gender == "2") {
-                genderText = "Other";
-            }
-
             let tdGender = document.createElement("td");
-            tdGender.innerText = genderText;
+            tdGender.innerText = prepareGenderText(customersToCreateList[i].gender);
             tr.appendChild(tdGender);
 		}
     }
