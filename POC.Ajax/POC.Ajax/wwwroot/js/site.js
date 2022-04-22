@@ -18,14 +18,24 @@ toastr.options = {
 };
 
 //Common Functions
-function prepareDate_yyyy_MM_dd(date) {
+function prepareDate_dd_MM_yyyy(date, separator = "/") {
     date = new Date(date);
     var day = date.getDate();
     var month = date.getMonth() + 1;
     var year = date.getFullYear();
     day = (day < 10 ? "0" : "") + day;
     month = (month < 10 ? "0" : "") + month;
-    return finalDate = year + "-" + month + "-" + day;
+    return finalDate = day + separator + month + separator + year;
+}
+
+function prepareDate_yyyy_MM_dd(date, separator = "-") {
+    date = new Date(date);
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    day = (day < 10 ? "0" : "") + day;
+    month = (month < 10 ? "0" : "") + month;
+    return finalDate = year + separator + month + separator + day;
 }
 
 function prepareTime_HH_mm(date) {

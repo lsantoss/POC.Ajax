@@ -31,7 +31,7 @@ function callDetailsViewAjax(id) {
         success: function (data) {
             document.getElementById("IdDetails").value = data.id;
             document.getElementById("NameDetails").value = data.name;
-            document.getElementById("BirthDetails").value = prepareDate_yyyy_MM_dd(data.birth);
+            document.getElementById("BirthDetails").value = prepareDate_dd_MM_yyyy(data.birth);
             document.getElementById("GenderDetails").value = prepareGenderText(data.gender);
             document.getElementById("divDetails").hidden = false;
             document.getElementById("divList").hidden = true;
@@ -49,7 +49,7 @@ function callDeleteViewAjax(id) {
         success: function (data) {
             document.getElementById("IdDelete").value = data.id;
             document.getElementById("NameDelete").value = data.name;
-            document.getElementById("BirthDelete").value = prepareDate_yyyy_MM_dd(data.birth);
+            document.getElementById("BirthDelete").value = prepareDate_dd_MM_yyyy(data.birth);
             document.getElementById("GenderDelete").value = prepareGenderText(data.gender);
             document.getElementById("divDelete").hidden = false;
             document.getElementById("divList").hidden = true;
@@ -58,10 +58,10 @@ function callDeleteViewAjax(id) {
 }
 
 function prepareTableList(customers) {
-    if (customers.length > 0) {
-        let tbody = document.getElementById("tbodyList");
-        tbody.innerText = "";
+    let tbody = document.getElementById("tbodyList");
+    tbody.innerText = "";
 
+    if (customers.length > 0) {
         for (var i = 0; i < customers.length; i++) {
             let tr = document.createElement("tr");
             tbody.appendChild(tr);
@@ -75,7 +75,7 @@ function prepareTableList(customers) {
             tr.appendChild(tdName);
 
             let tdBirth = document.createElement("td");
-            tdBirth.innerText = customers[i].birth.split('T')[0];;
+            tdBirth.innerText = prepareDate_dd_MM_yyyy(customers[i].birth);
             tr.appendChild(tdBirth);
 
             let tdGender = document.createElement("td");
@@ -88,7 +88,17 @@ function prepareTableList(customers) {
                 "<button class='btn btn-secondary' onclick='callDetailsViewAjax(" + customers[i].id +")'>Details</button> " +
                 "<button class='btn btn-secondary' onclick='callDeleteViewAjax(" + customers[i].id + ")'>Delete</button> ";
             tr.appendChild(tdActions);
-        }
+        }        
+    }
+    else {
+        let tr = document.createElement("tr");
+        tbody.appendChild(tr);
+
+        let td = document.createElement("td");
+        td.setAttribute("colspan", "5");
+        td.setAttribute("align", "center");
+        td.innerText = "No registered customer";
+        tr.appendChild(td);
     }
 }
 

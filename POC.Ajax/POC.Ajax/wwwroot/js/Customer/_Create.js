@@ -90,7 +90,7 @@ function prepareTableToCreateList() {
             tr.appendChild(tdName);
 
             let tdBirth = document.createElement("td");
-            tdBirth.innerText = customersToCreateList[i].birth;
+            tdBirth.innerText = prepareDate_dd_MM_yyyy(customersToCreateList[i].birth);
             tr.appendChild(tdBirth);
 
             let tdGender = document.createElement("td");
