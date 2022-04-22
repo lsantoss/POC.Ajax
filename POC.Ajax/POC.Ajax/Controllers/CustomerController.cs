@@ -7,7 +7,7 @@ namespace POC.Ajax.Controllers
 {
     public class CustomerController : Controller
     {
-        private static List<CustomerViewModel> customers = new();
+        private static readonly List<CustomerViewModel> customers = new();
 
         [HttpGet]
         public ActionResult Index()
