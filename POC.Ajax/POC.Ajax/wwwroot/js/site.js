@@ -17,22 +17,20 @@ toastr.options = {
     "hideMethod": "fadeOut"
 };
 
-// Toastr function - used to show messages when screens are reloaded
-//(function () {
-//    var displayMessage = function (message, msgType) {
-//        toastr[msgType](message);
-//    };
+//Common Functions
+function prepareDate_dd_MM_yyyy(date) {
+    date = new Date(date);
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    day = (day < 10 ? "0" : "") + day;
+    month = (month < 10 ? "0" : "") + month;
+    return finalDate = year + "-" + month + "-" + day;
+}
 
-//    if (document.getElementById('success').value) {
-//        displayMessage(document.getElementById('success').value, 'success');
-//    }
-//    if (document.getElementById('info').value) {
-//        displayMessage(document.getElementById('info').value, 'info');
-//    }
-//    if (document.getElementById('warning').value) {
-//        displayMessage(document.getElementById('warning').value, 'warning');
-//    }
-//    if (document.getElementById('error').value) {
-//        displayMessage(document.getElementById('error').value, 'error');
-//    }
-//})();
+function prepareTime_HH_mm(date) {
+    var date = new Date(data.birth);
+    var hour = date.getHours();
+    var min = date.getMinutes();
+    return hour + ":" + min;
+}

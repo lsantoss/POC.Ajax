@@ -9,11 +9,13 @@ namespace POC.Ajax.Controllers
     {
         private static List<CustomerViewModel> customers = new();
 
+        [HttpGet]
         public ActionResult Index()
         {
-            return View(customers);
+            return View(customers.OrderBy(x => x.Id));
         }
 
+        [HttpGet]
         public ActionResult Details(int id)
         {
             return View();
@@ -32,35 +34,46 @@ namespace POC.Ajax.Controllers
             {
                 success = true,
                 message = "Customer inserted successfully!",
-                customers = customers
+                customers = customers.OrderBy(x => x.Id)
             });
         }
 
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View();
+            var customer = customers.Where(x => x.Id == id).FirstOrDefault();
+            return Json(customer);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit([FromBody] CustomerViewModel request)
         {
-            try
+            var customer = customers.Where(x => x.Id == request.Id).FirstOrDefault();
+            if(customer != null)
             {
-                return RedirectToAction(nameof(Index));
+                customers.Remove(customer);
+                customer.Name = request.Name;
+                customer.Birth = request.Birth;
+                customer.Gender = request.Gender;
+                customers.Add(customer);
             }
-            catch
+
+            return Json(new
             {
-                return View();
-            }
+                success = true,
+                message = "Customer edited successfully!",
+                customers = customers.OrderBy(x => x.Id)
+            });
         }
 
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete([FromBody] CustomerViewModel request)
         {
             try
             {

@@ -1,9 +1,9 @@
 ﻿var customersToCreateList = [];
 
 function addToCreateList() {
-    const name = document.getElementById("Name").value;
-    const birth = document.getElementById("Birth").value;
-    const gender = document.getElementById("Gender").value;
+    const name = document.getElementById("NameCreate").value;
+    const birth = document.getElementById("BirthCreate").value;
+    const gender = document.getElementById("GenderCreate").value;
 
     if (name === undefined || name === null || name === "" ||
         birth === undefined || birth === null || birth === "" ||
@@ -18,7 +18,7 @@ function addToCreateList() {
 	}
 }
 
-function create() {
+function createAjax() {
     if (customersToCreateList.length > 0) {
         $.ajax({
             url: '/Home/Create/',
@@ -30,7 +30,7 @@ function create() {
             success: function (data) {
                 if (data.success === true) {
                     prepareTableList(data.customers);
-                    backToIndexView();
+                    createBackToIndexView();
                     toastr.success(data.message);
                 }
                 else {
@@ -44,7 +44,7 @@ function create() {
 	}
 }
 
-function backToIndexView() {
+function createBackToIndexView() {
     customersToCreateList = [];
     clearForm();
     prepareTableToCreateList();
@@ -54,9 +54,9 @@ function backToIndexView() {
 }
 
 function clearForm() {
-    document.getElementById("Name").value = "";
-    document.getElementById("Birth").value = "";
-    document.getElementById("Gender").value = "0";
+    document.getElementById("NameCreate").value = "";
+    document.getElementById("BirthCreate").value = "";
+    document.getElementById("GenderCreate").value = "0";
 }
 
 function customersToCreateListAdd(name, birth, gender) {

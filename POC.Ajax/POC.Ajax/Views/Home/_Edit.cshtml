@@ -1,0 +1,38 @@
+﻿<div id="divEdit" hidden>
+    <h4>Edit customer</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form>
+                <div class="form-group">
+                    <label class="control-label">Id</label>
+                    <input type="number" name="IdEdit" id="IdEdit" class="form-control" readonly/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <input type="text" name="NameEdit" id="NameEdit" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Birth</label>
+                    <input type="date" name="BirthEdit" id="BirthEdit" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Gender</label>
+                    <select name="GenderEdit" id="GenderEdit" class="form-control">
+                        <option value="0">Male</option>
+                        <option value="1">Famale</option>
+                        <option value="2">Other</option>
+                    </select>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="button" value="Edit" class="btn btn-success"  onclick="edit()"/>
+                    <input type="button" value="Voltar" class="btn btn-secondary" onclick="editBackToIndexView()"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Home/_Edit.js"></script>

@@ -4,7 +4,21 @@
 }
 
 function callEditView(id) {
-    console.log(id);
+    $.ajax({
+        url: '/Home/Edit/' + id,
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        async: false,
+        success: function (data) {
+            document.getElementById("IdEdit").value = data.id;
+            document.getElementById("NameEdit").value = data.name;
+            document.getElementById("BirthEdit").value = prepareDate_dd_MM_yyyy(data.birth);
+            document.getElementById("GenderEdit").value = data.gender;
+            document.getElementById("divEdit").hidden = false;
+            document.getElementById("divList").hidden = true;
+        }
+    });
 }
 
 function callDetailsView(id) {
