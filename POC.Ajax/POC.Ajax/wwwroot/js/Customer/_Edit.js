@@ -1,8 +1,8 @@
 ﻿function edit() {
-    var id = document.getElementById("IdEdit").value;
-    var name = document.getElementById("NameEdit").value;
-    var birth = document.getElementById("BirthEdit").value;
-    var gender = document.getElementById("GenderEdit").value;
+    var id = $("#IdEdit").val();
+    var name = $("#NameEdit").val();
+    var birth = $("#BirthEdit").val();
+    var gender = $("#GenderEdit").val();
 
     if (id === undefined || id === null || id === "" ||
         name === undefined || name === null || name === "" ||
@@ -34,10 +34,10 @@ function editAjax(customer) {
         contentType: 'application/json',
         async: false,
         beforeSend: function () {
-            document.getElementById("div-loader").hidden = false;
+            $("#div-loader").show();
         },
         complete: function () {
-            document.getElementById("div-loader").hidden = true;
+            $("#div-loader").hide();
         },
         success: function (data) {
             if (data.success === true) {
@@ -56,6 +56,6 @@ function editAjax(customer) {
 }
 
 function editBackToIndexView() {
-    document.getElementById("divEdit").hidden = true;
-    document.getElementById("divList").hidden = false;
+    $("#divEdit").hide();
+    $("#divList").show();
 }

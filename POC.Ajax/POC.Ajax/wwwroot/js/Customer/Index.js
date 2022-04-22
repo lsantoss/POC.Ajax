@@ -1,6 +1,6 @@
 ﻿function callCreateView() {
-    document.getElementById("divList").hidden = true;
-    document.getElementById("divCreate").hidden = false;
+    $("#divList").hide();
+    $("#divCreate").show();
 }
 
 function callEditViewAjax(id) {
@@ -11,18 +11,18 @@ function callEditViewAjax(id) {
         contentType: 'application/json',
         async: false,
         beforeSend: function () {
-            document.getElementById("div-loader").hidden = false;
+            $("#div-loader").show();
         },
         complete: function () {
-            document.getElementById("div-loader").hidden = true;
+            $("#div-loader").hide();
         },
         success: function (data) {
-            document.getElementById("IdEdit").value = data.id;
-            document.getElementById("NameEdit").value = data.name;
-            document.getElementById("BirthEdit").value = prepareDate_yyyy_MM_dd(data.birth);
-            document.getElementById("GenderEdit").value = data.gender;
-            document.getElementById("divEdit").hidden = false;
-            document.getElementById("divList").hidden = true;
+            $("#IdEdit").val(data.id);
+            $("#NameEdit").val(data.name);
+            $("#BirthEdit").val(prepareDate_yyyy_MM_dd(data.birth));
+            $("#GenderEdit").val(data.gender);
+            $("#divEdit").show();
+            $("#divList").hide();
         },
         error: function () {
             toastr.error("Sorry, an error occurred during your request.");
@@ -38,18 +38,18 @@ function callDetailsViewAjax(id) {
         contentType: 'application/json',
         async: false,
         beforeSend: function () {
-            document.getElementById("div-loader").hidden = false;
+            $("#div-loader").show();
         },             
         complete: function () {
-            document.getElementById("div-loader").hidden = true;
+            $("#div-loader").hide();
         },
         success: function (data) {
-            document.getElementById("IdDetails").value = data.id;
-            document.getElementById("NameDetails").value = data.name;
-            document.getElementById("BirthDetails").value = prepareDate_dd_MM_yyyy(data.birth);
-            document.getElementById("GenderDetails").value = prepareGenderText(data.gender);
-            document.getElementById("divDetails").hidden = false;
-            document.getElementById("divList").hidden = true;
+            $("#IdDetails").val(data.id);
+            $("#NameDetails").val(data.name);
+            $("#BirthDetails").val(prepareDate_dd_MM_yyyy(data.birth));
+            $("#GenderDetails").val(prepareGenderText(data.gender));
+            $("#divDetails").show();
+            $("#divList").hide();
         },
         error: function () {
             toastr.error("Sorry, an error occurred during your request.");
@@ -65,18 +65,18 @@ function callDeleteViewAjax(id) {
         contentType: 'application/json',
         async: false,
         beforeSend: function () {
-            document.getElementById("div-loader").hidden = false;
+            $("#div-loader").show();
         },
         complete: function () {
-            document.getElementById("div-loader").hidden = true;
+            $("#div-loader").hide();
         },
         success: function (data) {
-            document.getElementById("IdDelete").value = data.id;
-            document.getElementById("NameDelete").value = data.name;
-            document.getElementById("BirthDelete").value = prepareDate_dd_MM_yyyy(data.birth);
-            document.getElementById("GenderDelete").value = prepareGenderText(data.gender);
-            document.getElementById("divDelete").hidden = false;
-            document.getElementById("divList").hidden = true;
+            $("#IdDelete").val(data.id);
+            $("#NameDelete").val(data.name);
+            $("#BirthDelete").val(prepareDate_dd_MM_yyyy(data.birth));
+            $("#GenderDelete").val(prepareGenderText(data.gender));
+            $("#divDelete").show();
+            $("#divList").hide();
         },
         error: function () {
             toastr.error("Sorry, an error occurred during your request.");
@@ -85,47 +85,28 @@ function callDeleteViewAjax(id) {
 }
 
 function prepareTableList(customers) {
-    let tbody = document.getElementById("tbodyList");
-    tbody.innerText = "";
-
     if (customers.length > 0) {
+        $("#tbodyList").html("");
         for (var i = 0; i < customers.length; i++) {
-            let tr = document.createElement("tr");
-            tbody.appendChild(tr);
+            let tdId = $("<td>").html(customers[i].id);
+            let tdName = $("<td>").html(customers[i].name);
+            let tdBirth = $("<td>").html(prepareDate_dd_MM_yyyy(customers[i].birth));
+            let tdGender = $("<td>").html(prepareGenderText(customers[i].gender));
 
-            let tdId = document.createElement("td");
-            tdId.innerText = customers[i].id;
-            tr.appendChild(tdId);
-
-            let tdName = document.createElement("td");
-            tdName.innerText = customers[i].name;
-            tr.appendChild(tdName);
-
-            let tdBirth = document.createElement("td");
-            tdBirth.innerText = prepareDate_dd_MM_yyyy(customers[i].birth);
-            tr.appendChild(tdBirth);
-
-            let tdGender = document.createElement("td");
-            tdGender.innerText = prepareGenderText(customers[i].gender);
-            tr.appendChild(tdGender);
-
-            let tdActions = document.createElement("td");
-            tdActions.innerHTML =
+            let actions =
                 "<button class='btn btn-secondary' onclick='callEditViewAjax(" + customers[i].id + ")'>Edit</button> " +
                 "<button class='btn btn-secondary' onclick='callDetailsViewAjax(" + customers[i].id +")'>Details</button> " +
                 "<button class='btn btn-secondary' onclick='callDeleteViewAjax(" + customers[i].id + ")'>Delete</button> ";
-            tr.appendChild(tdActions);
+            let tdActions = $("<td>").html(actions);
+
+            let tr = $("<tr>").append(tdId, tdName, tdBirth, tdGender, tdActions);
+            $("#tbodyList").append(tr);
         }        
     }
     else {
-        let tr = document.createElement("tr");
-        tbody.appendChild(tr);
-
-        let td = document.createElement("td");
-        td.setAttribute("colspan", "5");
-        td.setAttribute("align", "center");
-        td.innerText = "No registered customer";
-        tr.appendChild(td);
+        let td = $("<td>").prop("colspan", 5).prop("align", "center").text("No registered customer");
+        let tr = $("<tr>").append(td);
+        $("#tbodyList").html(tr);
     }
 }
 

@@ -1,9 +1,9 @@
 ﻿var customersToCreateList = [];
 
 function addToCreateList() {
-    const name = document.getElementById("NameCreate").value;
-    const birth = document.getElementById("BirthCreate").value;
-    const gender = document.getElementById("GenderCreate").value;
+    const name = $("#NameCreate").val();
+    const birth = $("#BirthCreate").val();
+    const gender = $("#GenderCreate").val();
 
     if (name === undefined || name === null || name === "" ||
         birth === undefined || birth === null || birth === "" ||
@@ -28,10 +28,10 @@ function createAjax() {
             contentType: 'application/json',
             async: false,
             beforeSend: function () {
-                document.getElementById("div-loader").hidden = false;
+                $("#div-loader").show();
             },
             complete: function () {
-                document.getElementById("div-loader").hidden = true;
+                $("#div-loader").hide();
             },
             success: function (data) {
                 if (data.success === true) {
@@ -49,7 +49,7 @@ function createAjax() {
         });
     }
     else {
-        alert("List of customers to be created is empty!");
+        toastr.error("List of customers to be created is empty!");
 	}
 }
 
@@ -58,14 +58,14 @@ function createBackToIndexView() {
     clearForm();
     prepareTableToCreateList();
     prepareCreateButton();
-    document.getElementById("divCreate").hidden = true;
-    document.getElementById("divList").hidden = false;
+    $("#divCreate").hide();
+    $("#divList").show();
 }
 
 function clearForm() {
-    document.getElementById("NameCreate").value = "";
-    document.getElementById("BirthCreate").value = "";
-    document.getElementById("GenderCreate").value = "0";
+    $("#NameCreate").val("");
+    $("#BirthCreate").val("");
+    $("#GenderCreate").val("0");
 }
 
 function customersToCreateListAdd(name, birth, gender) {
@@ -78,43 +78,27 @@ function customersToCreateListAdd(name, birth, gender) {
 
 function prepareCreateButton() {
     if (customersToCreateList.length > 0) {
-        document.getElementById("btnCreate").disabled = false;
+        $("#btnCreate").prop("disabled", false);
     }
     else {
-        document.getElementById("btnCreate").disabled = true;
+        $("#btnCreate").prop("disabled", true);
     }
 }
 
 function prepareTableToCreateList() {
-    let tbody = document.getElementById("tbodyCreateList");
-    tbody.innerText = "";
-
     if (customersToCreateList.length > 0) {
+        $("#tbodyCreateList").html("");
         for (var i = 0; i < customersToCreateList.length; i++) {
-            let tr = document.createElement("tr");
-            tbody.appendChild(tr);
-
-            let tdName = document.createElement("td");
-            tdName.innerText = customersToCreateList[i].name;
-            tr.appendChild(tdName);
-
-            let tdBirth = document.createElement("td");
-            tdBirth.innerText = prepareDate_dd_MM_yyyy(customersToCreateList[i].birth);
-            tr.appendChild(tdBirth);
-
-            let tdGender = document.createElement("td");
-            tdGender.innerText = prepareGenderText(customersToCreateList[i].gender);
-            tr.appendChild(tdGender);
+            let tdName = $("<td>").html(customersToCreateList[i].name);
+            let tdBirth = $("<td>").html(prepareDate_dd_MM_yyyy(customersToCreateList[i].birth));
+            let tdGender = $("<td>").html(prepareGenderText(customersToCreateList[i].gender));
+            let tr = $("<tr>").append(tdName, tdBirth, tdGender);
+            $("#tbodyCreateList").append(tr);
 		}
     }
     else {
-        let tr = document.createElement("tr");
-        tbody.appendChild(tr);
-
-        let td = document.createElement("td");
-        td.setAttribute("colspan", "3");
-        td.setAttribute("align", "center");
-        td.innerText = "No customers added to the list";
-        tr.appendChild(td);
+        let td = $("<td>").prop("colspan", 3).prop("align", "center").text("No customers added to the list");
+        let tr = $("<tr>").append(td);
+        $("#tbodyCreateList").html(tr);
 	}
 }

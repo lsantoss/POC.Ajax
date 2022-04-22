@@ -1,6 +1,6 @@
 ﻿function deleteAjax() {
     var customer = new Object();
-    customer.id = document.getElementById("IdDelete").value;
+    customer.id = $("#IdDelete").val();
 
     $.ajax({
         url: '/Customer/Delete/',
@@ -10,10 +10,10 @@
         contentType: 'application/json',
         async: false,
         beforeSend: function () {
-            document.getElementById("div-loader").hidden = false;
+            $("#div-loader").show();
         },
         complete: function () {
-            document.getElementById("div-loader").hidden = true;
+            $("#div-loader").hide();
         },
         success: function (data) {
             if (data.success === true) {
@@ -32,6 +32,6 @@
 }
 
 function deleteBackToIndexView() {
-    document.getElementById("divDelete").hidden = true;
-    document.getElementById("divList").hidden = false;
+    $("#divDelete").hide();
+    $("#divList").show();
 }
