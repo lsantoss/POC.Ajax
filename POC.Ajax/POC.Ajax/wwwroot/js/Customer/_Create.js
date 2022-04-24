@@ -28,10 +28,10 @@ function createAjax() {
             contentType: 'application/json',
             async: false,
             beforeSend: function () {
-                $("#div-loader").show();
+                $("#DivLoader").show();
             },
             complete: function () {
-                $("#div-loader").hide();
+                $("#DivLoader").hide();
             },
             success: function (data) {
                 if (data.success === true) {
@@ -58,8 +58,8 @@ function createBackToIndexView() {
     clearForm();
     prepareTableToCreateList();
     prepareCreateButton();
-    $("#divCreate").hide();
-    $("#divList").show();
+    $("#DivCreate").hide();
+    $("#DivList").show();
 }
 
 function clearForm() {
@@ -78,27 +78,27 @@ function customersToCreateListAdd(name, birth, gender) {
 
 function prepareCreateButton() {
     if (customersToCreateList.length > 0) {
-        $("#btnCreate").prop("disabled", false);
+        $("#BtnCreate").prop("disabled", false);
     }
     else {
-        $("#btnCreate").prop("disabled", true);
+        $("#BtnCreate").prop("disabled", true);
     }
 }
 
 function prepareTableToCreateList() {
     if (customersToCreateList.length > 0) {
-        $("#tbodyCreateList").html("");
+        $("#TbodyCreateList").html("");
         for (var i = 0; i < customersToCreateList.length; i++) {
             let tdName = $("<td>").html(customersToCreateList[i].name);
             let tdBirth = $("<td>").html(prepareDate_dd_MM_yyyy(customersToCreateList[i].birth));
             let tdGender = $("<td>").html(prepareGenderText(customersToCreateList[i].gender));
             let tr = $("<tr>").append(tdName, tdBirth, tdGender);
-            $("#tbodyCreateList").append(tr);
+            $("#TbodyCreateList").append(tr);
 		}
     }
     else {
         let td = $("<td>").prop("colspan", 3).prop("align", "center").text("No customers added to the list");
         let tr = $("<tr>").append(td);
-        $("#tbodyCreateList").html(tr);
+        $("#TbodyCreateList").html(tr);
 	}
 }

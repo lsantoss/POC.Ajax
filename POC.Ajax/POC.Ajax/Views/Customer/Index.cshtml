@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<CustomerViewModel>
 
-<div id="divList">
+<div id="DivList">
     <p>
         <button class="btn btn-secondary" onclick="callCreateView()">Create New</button>
     </p>
@@ -24,7 +24,7 @@
                 </th>
             </tr>
         </thead>
-        <tbody id="tbodyList">
+        <tbody id="TbodyList">
             @if(Model != null && Model.Count() > 0)
             {
                 foreach (var item in Model) {

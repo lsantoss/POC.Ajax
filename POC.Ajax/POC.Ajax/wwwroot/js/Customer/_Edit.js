@@ -34,10 +34,10 @@ function editAjax(customer) {
         contentType: 'application/json',
         async: false,
         beforeSend: function () {
-            $("#div-loader").show();
+            $("#DivLoader").show();
         },
         complete: function () {
-            $("#div-loader").hide();
+            $("#DivLoader").hide();
         },
         success: function (data) {
             if (data.success === true) {
@@ -56,6 +56,6 @@ function editAjax(customer) {
 }
 
 function editBackToIndexView() {
-    $("#divEdit").hide();
-    $("#divList").show();
+    $("#DivEdit").hide();
+    $("#DivList").show();
 }

@@ -1,4 +1,4 @@
 ﻿function detailsBackToIndexView() {
-    $("#divDetails").hide();
-    $("#divList").show();
+    $("#DivDetails").hide();
+    $("#DivList").show();
 }
