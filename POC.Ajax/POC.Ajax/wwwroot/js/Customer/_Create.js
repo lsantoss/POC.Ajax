@@ -1,9 +1,9 @@
 ﻿var customersToCreateList = [];
 
 function addToCreateList() {
-    const name = $("#NameCreate").val();
-    const birth = $("#BirthCreate").val();
-    const gender = $("#GenderCreate").val();
+    const name = $("#Name").val();
+    const birth = $("#Birth").val();
+    const gender = $("#Gender").val();
 
     if (name === undefined || name === null || name === "" ||
         birth === undefined || birth === null || birth === "" ||
@@ -14,8 +14,52 @@ function addToCreateList() {
         clearForm();
         customersToCreateListAdd(name, birth, gender);
         prepareTableToCreateList();
-        prepareCreateButton();
 	}
+}
+
+function clearForm() {
+    $("#Name").val("");
+    $("#Birth").val("");
+    $("#Gender").val("");
+    $("#BtnCreate").prop("disabled", false);
+}
+
+function customersToCreateListAdd(name, birth, gender) {
+    const customer = new Object();
+    customer.name = name;
+    customer.birth = birth;
+    customer.gender = parseInt(gender);
+    customersToCreateList.push(customer);
+}
+
+function prepareTableToCreateList() {
+    if (customersToCreateList.length > 0) {
+        $("#TbodyCreateList").html("");
+        for (var i = 0; i < customersToCreateList.length; i++) {
+            let tdName = $("<td>").html(customersToCreateList[i].name);
+            let tdBirth = $("<td>").html(prepareDate_dd_MM_yyyy_HH_mm(customersToCreateList[i].birth));
+            let tdGender = $("<td>").html(prepareGenderText(customersToCreateList[i].gender));
+            let tr = $("<tr>").append(tdName, tdBirth, tdGender);
+            $("#TbodyCreateList").append(tr);
+        }
+    }
+    else {
+        let td = $("<td>").prop("colspan", 3).prop("align", "center").text("No customers added to the list");
+        let tr = $("<tr>").append(td);
+        $("#TbodyCreateList").html(tr);
+    }
+}
+
+function prepareGenderText(value) {
+    if (value == "0") {
+        return "Male";
+    }
+    else if (value == "1") {
+        return "Female";
+    }
+    else if (value == "2") {
+        return "Other";
+    }
 }
 
 function createAjax() {
@@ -35,9 +79,8 @@ function createAjax() {
             },
             success: function (data) {
                 if (data.success === true) {
-                    prepareTableList(data.customers);
-                    createBackToIndexView();
                     toastr.success(data.message);
+                    callListView();
                 }
                 else {
                     toastr.error(data.message);
@@ -50,55 +93,5 @@ function createAjax() {
     }
     else {
         toastr.error("List of customers to be created is empty!");
-	}
-}
-
-function createBackToIndexView() {
-    customersToCreateList = [];
-    clearForm();
-    prepareTableToCreateList();
-    prepareCreateButton();
-    $("#DivCreate").hide();
-    $("#DivList").show();
-}
-
-function clearForm() {
-    $("#NameCreate").val("");
-    $("#BirthCreate").val("");
-    $("#GenderCreate").val("0");
-}
-
-function customersToCreateListAdd(name, birth, gender) {
-    const customer = new Object();
-    customer.name = name;
-    customer.birth = birth;
-    customer.gender = parseInt(gender);
-    customersToCreateList.push(customer);
-}
-
-function prepareCreateButton() {
-    if (customersToCreateList.length > 0) {
-        $("#BtnCreate").prop("disabled", false);
-    }
-    else {
-        $("#BtnCreate").prop("disabled", true);
-    }
-}
-
-function prepareTableToCreateList() {
-    if (customersToCreateList.length > 0) {
-        $("#TbodyCreateList").html("");
-        for (var i = 0; i < customersToCreateList.length; i++) {
-            let tdName = $("<td>").html(customersToCreateList[i].name);
-            let tdBirth = $("<td>").html(prepareDate_dd_MM_yyyy(customersToCreateList[i].birth));
-            let tdGender = $("<td>").html(prepareGenderText(customersToCreateList[i].gender));
-            let tr = $("<tr>").append(tdName, tdBirth, tdGender);
-            $("#TbodyCreateList").append(tr);
-		}
-    }
-    else {
-        let td = $("<td>").prop("colspan", 3).prop("align", "center").text("No customers added to the list");
-        let tr = $("<tr>").append(td);
-        $("#TbodyCreateList").html(tr);
 	}
 }

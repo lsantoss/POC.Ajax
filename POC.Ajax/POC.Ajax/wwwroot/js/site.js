@@ -18,29 +18,28 @@ toastr.options = {
 };
 
 //Common Functions
-function prepareDate_dd_MM_yyyy(date, separator = "/") {
+function prepareDate_dd_MM_yyyy_HH_mm(date, separator = "/") {
     date = new Date(date);
     var day = date.getDate();
     var month = date.getMonth() + 1;
     var year = date.getFullYear();
-    day = (day < 10 ? "0" : "") + day;
-    month = (month < 10 ? "0" : "") + month;
-    return finalDate = day + separator + month + separator + year;
-}
-
-function prepareDate_yyyy_MM_dd(date, separator = "-") {
-    date = new Date(date);
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = date.getFullYear();
-    day = (day < 10 ? "0" : "") + day;
-    month = (month < 10 ? "0" : "") + month;
-    return finalDate = year + separator + month + separator + day;
-}
-
-function prepareTime_HH_mm(date) {
-    var date = new Date(data.birth);
     var hour = date.getHours();
     var min = date.getMinutes();
-    return hour + ":" + min;
+    day = (day < 10 ? "0" : "") + day;
+    month = (month < 10 ? "0" : "") + month;
+    hour = (hour < 10 ? "0" + hour : hour);
+    min = (min < 10 ? "0" + min : min);
+    return finalDate = day + separator + month + separator + year + " " + hour + ":" + min;
+}
+
+function prepareDate_yyyy_MM_dd_HH_mm(date, separator = "-") {
+    date = new Date(date);
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    day = (day < 10 ? "0" : "") + day;
+    month = (month < 10 ? "0" : "") + month;
+    hour = (hour < 10 ? "0" + hour : hour);
+    min = (min < 10 ? "0" + min : min);
+    return finalDate = year + separator + month + separator + day + " " + hour + ":" + min;
 }

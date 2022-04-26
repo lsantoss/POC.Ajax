@@ -16,10 +16,22 @@ namespace POC.Ajax.Controllers
         }
 
         [HttpGet]
-        public JsonResult Details(int id)
+        public PartialViewResult List()
+        {
+            return PartialView("_List", customers.OrderBy(x => x.Id));
+        }
+
+        [HttpGet]
+        public PartialViewResult Details(int id)
         {
             var customer = customers.Where(x => x.Id == id).FirstOrDefault();
-            return Json(customer);
+            return PartialView("_Details", customer);
+        }
+
+        [HttpGet]
+        public PartialViewResult Create()
+        {
+            return PartialView("_Create");
         }
 
         [HttpPost]
@@ -34,16 +46,15 @@ namespace POC.Ajax.Controllers
             return Json(new
             {
                 success = true,
-                message = "Customer inserted successfully!",
-                customers = customers.OrderBy(x => x.Id)
+                message = "Customer inserted successfully!"
             });
         }
 
         [HttpGet]
-        public JsonResult Edit(int id)
+        public PartialViewResult Edit(int id)
         {
             var customer = customers.Where(x => x.Id == id).FirstOrDefault();
-            return Json(customer);
+            return PartialView("_Edit", customer);
         }
 
         [HttpPost]
@@ -68,10 +79,10 @@ namespace POC.Ajax.Controllers
         }
 
         [HttpGet]
-        public JsonResult Delete(int id)
+        public PartialViewResult Delete(int id)
         {
             var customer = customers.Where(x => x.Id == id).FirstOrDefault();
-            return Json(customer);
+            return PartialView("_Delete", customer);
         }
 
         [HttpPost]

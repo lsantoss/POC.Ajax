@@ -1,6 +1,6 @@
 ﻿function deleteAjax() {
     var customer = new Object();
-    customer.id = $("#IdDelete").val();
+    customer.id = $("#Id").val();
 
     $.ajax({
         url: '/Customer/Delete/',
@@ -17,9 +17,8 @@
         },
         success: function (data) {
             if (data.success === true) {
-                prepareTableList(data.customers);
-                deleteBackToIndexView();
                 toastr.success(data.message);
+                callListView();
             }
             else {
                 toastr.error(data.message);
@@ -29,9 +28,4 @@
             toastr.error("Sorry, an error occurred during your request.");
         }
     });
-}
-
-function deleteBackToIndexView() {
-    $("#DivDelete").hide();
-    $("#DivList").show();
 }

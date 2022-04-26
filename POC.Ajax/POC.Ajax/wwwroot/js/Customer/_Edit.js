@@ -1,8 +1,8 @@
 ﻿function edit() {
-    var id = $("#IdEdit").val();
-    var name = $("#NameEdit").val();
-    var birth = $("#BirthEdit").val();
-    var gender = $("#GenderEdit").val();
+    var id = $("#Id").val();
+    var name = $("#Name").val();
+    var birth = $("#Birth").val();
+    var gender = $("#Gender").val();
 
     if (id === undefined || id === null || id === "" ||
         name === undefined || name === null || name === "" ||
@@ -11,7 +11,7 @@
         toastr.info("All fields are mandatory!")
     }
     else {
-        var customer = prepareCustomerData(id, name, birth, gender);
+        const customer = prepareCustomerData(id, name, birth, gender);
         editAjax(customer);
     }
 }
@@ -41,9 +41,8 @@ function editAjax(customer) {
         },
         success: function (data) {
             if (data.success === true) {
-                prepareTableList(data.customers);
-                editBackToIndexView();
                 toastr.success(data.message);
+                callListView();
             }
             else {
                 toastr.error(data.message);
@@ -53,9 +52,4 @@ function editAjax(customer) {
             toastr.error("Sorry, an error occurred during your request.");
         }
     });
-}
-
-function editBackToIndexView() {
-    $("#DivEdit").hide();
-    $("#DivList").show();
 }
