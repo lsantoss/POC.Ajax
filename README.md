@@ -1,8 +1,19 @@
 # POC.Ajax
 
-<h3>Aplicação:</h3>
-<p>Essa aplicação contém um exemplo básico uso de Ajax e PartialViews</p>
-<p>Banco de Dados: Não</p>
-<p>Framework: .Net 6</p>
-<p>Biblioteca: Jquery</p>
-<p>Biblioteca: Toastr</p>
+<h2>Aplicação:</h2>
+<p>Essa aplicação contém um exemplo do uso de Ajax e PartialViews</p>
+
+***
+
+<h2>Bibliotecas:</h2>
+<ul type="disc">
+  <li>Jquery</li>
+  <li>Toastr</li>
+</ul>
+
+***
+
+<h2>Frameworks:</h2>
+<ul type="disc">
+  <li>.Net 6</li>
+</ul>
