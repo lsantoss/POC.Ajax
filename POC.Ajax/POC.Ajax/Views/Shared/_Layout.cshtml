@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg" href="~/images/favicon.svg">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>POC.Ajax</title>
+    <link rel="icon" type="image/svg" href="~/images/favicon.svg">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/toastr/toastr.css" />
@@ -21,10 +22,12 @@
                 </button>
             </div>
         </nav>
-    </header>                   
+    </header>
+
     <div id="div-loader">
         <img id="loader" src="~/images/loader.gif" alt="gif-loader"/>
     </div>
+
     <div class="container"> 
         <main role="main" class="pb-3">
             @RenderBody()

@@ -72,15 +72,15 @@ function createAjax() {
             contentType: 'application/json',
             async: false,
             beforeSend: function () {
-                $("#DivLoader").show();
+                $("#div-loader").show();
             },
             complete: function () {
-                $("#DivLoader").hide();
+                $("#div-loader").hide();
             },
             success: function (data) {
                 if (data.success === true) {
                     toastr.success(data.message);
-                    callListView();
+                    callListViewAjax();
                 }
                 else {
                     toastr.error(data.message);

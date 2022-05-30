@@ -10,29 +10,16 @@ namespace POC.Ajax.Controllers
         private static readonly List<CustomerViewModel> customers = new();
 
         [HttpGet]
-        public ActionResult Index()
-        {
-            return View(customers.OrderBy(x => x.Id));
-        }
+        public ActionResult Index() => View(customers.OrderBy(x => x.Id));
 
         [HttpGet]
-        public PartialViewResult List()
-        {
-            return PartialView("_List", customers.OrderBy(x => x.Id));
-        }
+        public PartialViewResult List() => PartialView("_List", customers.OrderBy(x => x.Id));
 
         [HttpGet]
-        public PartialViewResult Details(int id)
-        {
-            var customer = customers.Where(x => x.Id == id).FirstOrDefault();
-            return PartialView("_Details", customer);
-        }
+        public PartialViewResult Details(int id) => PartialView("_Details", customers.Where(x => x.Id == id).FirstOrDefault());
 
         [HttpGet]
-        public PartialViewResult Create()
-        {
-            return PartialView("_Create");
-        }
+        public PartialViewResult Create() => PartialView("_Create");
 
         [HttpPost]
         public JsonResult Create([FromBody] CustomerViewModel[] request)
@@ -51,11 +38,7 @@ namespace POC.Ajax.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult Edit(int id)
-        {
-            var customer = customers.Where(x => x.Id == id).FirstOrDefault();
-            return PartialView("_Edit", customer);
-        }
+        public PartialViewResult Edit(int id) => PartialView("_Edit", customers.Where(x => x.Id == id).FirstOrDefault());
 
         [HttpPost]
         public JsonResult Edit([FromBody] CustomerViewModel request)
@@ -73,17 +56,12 @@ namespace POC.Ajax.Controllers
             return Json(new
             {
                 success = true,
-                message = "Customer edited successfully!",
-                customers = customers.OrderBy(x => x.Id)
+                message = "Customer edited successfully!"
             });
         }
 
         [HttpGet]
-        public PartialViewResult Delete(int id)
-        {
-            var customer = customers.Where(x => x.Id == id).FirstOrDefault();
-            return PartialView("_Delete", customer);
-        }
+        public PartialViewResult Delete(int id) => PartialView("_Delete", customers.Where(x => x.Id == id).FirstOrDefault());
 
         [HttpPost]
         public JsonResult Delete([FromBody] CustomerViewModel request)
@@ -95,15 +73,11 @@ namespace POC.Ajax.Controllers
             return Json(new
             {
                 success = true,
-                message = "Customer delete successfully!",
-                customers = customers.OrderBy(x => x.Id)
+                message = "Customer delete successfully!"
             });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

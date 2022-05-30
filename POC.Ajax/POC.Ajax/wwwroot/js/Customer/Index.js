@@ -1,4 +1,4 @@
-﻿function callListView() {
+﻿function callListViewAjax() {
     $.ajax({
         url: '/Customer/List/',
         type: 'GET',
@@ -6,13 +6,13 @@
         contentType: 'application/json',
         async: false,
         beforeSend: function () {
-            $("#DivLoader").show();
+            $("#div-loader").show();
         },
         complete: function () {
-            $("#DivLoader").hide();
+            $("#div-loader").hide();
         },
         success: function (data) {
-            $("#DivCustomer").html(data);
+            $("#div-container-crud").html(data);
         },
         error: function () {
             toastr.error("Sorry, an error occurred during your request.");
@@ -20,7 +20,7 @@
     });
 }
 
-function callCreateView() {
+function callCreateViewAjax() {
     $.ajax({
         url: '/Customer/Create/',
         type: 'GET',
@@ -28,13 +28,13 @@ function callCreateView() {
         contentType: 'application/json',
         async: false,
         beforeSend: function () {
-            $("#DivLoader").show();
+            $("#div-loader").show();
         },
         complete: function () {
-            $("#DivLoader").hide();
+            $("#div-loader").hide();
         },
         success: function (data) {
-            $("#DivCustomer").html(data);
+            $("#div-container-crud").html(data);
         },
         error: function (data) {
             toastr.error("Sorry, an error occurred during your request.");
@@ -44,19 +44,19 @@ function callCreateView() {
 
 function callEditViewAjax(id) {
     $.ajax({
-        url: '/Customer/Edit/' + id,
+        url: `/Customer/Edit/${id}`,
         type: 'GET',
         dataType: 'html',
         contentType: 'application/json',
         async: false,
         beforeSend: function () {
-            $("#DivLoader").show();
+            $("#div-loader").show();
         },
         complete: function () {
-            $("#DivLoader").hide();
+            $("#div-loader").hide();
         },
         success: function (data) {
-            $("#DivCustomer").html(data);
+            $("#div-container-crud").html(data);
         },
         error: function () {
             toastr.error("Sorry, an error occurred during your request.");
@@ -66,19 +66,19 @@ function callEditViewAjax(id) {
 
 function callDetailsViewAjax(id) {
     $.ajax({
-        url: '/Customer/Details/' + id,
+        url: `/Customer/Details/${id}`,
         type: 'GET',
         dataType: 'html',
         contentType: 'application/json',
         async: false,
         beforeSend: function () {
-            $("#DivLoader").show();
+            $("#div-loader").show();
         },
         complete: function () {
-            $("#DivLoader").hide();
+            $("#div-loader").hide();
         },
         success: function (data) {
-            $("#DivCustomer").html(data);
+            $("#div-container-crud").html(data);
         },
         error: function (data) {
             toastr.error("Sorry, an error occurred during your request.");
@@ -88,19 +88,19 @@ function callDetailsViewAjax(id) {
 
 function callDeleteViewAjax(id) {
     $.ajax({
-        url: '/Customer/Delete/' + id,
+        url: `/Customer/Delete/${id}`,
         type: 'GET',
         dataType: 'html',
         contentType: 'application/json',
         async: false,
         beforeSend: function () {
-            $("#DivLoader").show();
+            $("#div-loader").show();
         },
         complete: function () {
-            $("#DivLoader").hide();
+            $("#div-loader").hide();
         },
         success: function (data) {
-            $("#DivCustomer").html(data);
+            $("#div-container-crud").html(data);
         },
         error: function () {
             toastr.error("Sorry, an error occurred during your request.");

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<CustomerViewModel>
 
 <p>
-    <button class="btn btn-secondary" onclick="callCreateView()">Create New</button>
+    <button class="btn btn-secondary" onclick="callCreateViewAjax()">Create New</button>
 </p>
 <table class="table">
     <thead>
@@ -23,7 +23,7 @@
             </th>
         </tr>
     </thead>
-    <tbody id="TbodyList">
+    <tbody>
         @if(Model != null && Model.Count() > 0)
         {
             foreach (var item in Model) {
