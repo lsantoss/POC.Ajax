@@ -5,15 +5,15 @@
 
 ***
 
-<h2>Bibliotecas:</h2>
+<h2>Frameworks:</h2>
 <ul type="disc">
-  <li>Jquery</li>
-  <li>Toastr</li>
+  <li>.Net 6</li>
 </ul>
 
 ***
 
-<h2>Frameworks:</h2>
+<h2>Bibliotecas (principais):</h2>
 <ul type="disc">
-  <li>.Net 6</li>
+  <li>Jquery</li>
+  <li>Toastr</li>
 </ul>
