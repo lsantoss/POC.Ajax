@@ -8,7 +8,7 @@ function addToCreateList() {
     if (name === undefined || name === null || name === "" ||
         birth === undefined || birth === null || birth === "" ||
         gender === undefined || gender === null || gender === "") {
-        toastr.info("All fields are mandatory!")
+        toastr.info("All fields are mandatory!");
     }
     else {
         clearForm();
