@@ -1,8 +1,8 @@
 ﻿function edit() {
-    var id = $("#Id").val();
-    var name = $("#Name").val();
-    var birth = $("#Birth").val();
-    var gender = $("#Gender").val();
+    const id = $("#Id").val();
+    const name = $("#Name").val();
+    const birth = $("#Birth").val();
+    const gender = $("#Gender").val();
 
     if (id === undefined || id === null || id === "" ||
         name === undefined || name === null || name === "" ||

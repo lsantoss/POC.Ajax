@@ -20,11 +20,11 @@ toastr.options = {
 //Common Functions
 function prepareDate_dd_MM_yyyy_HH_mm(date, separator = "/") {
     date = new Date(date);
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = date.getFullYear();
-    var hour = date.getHours();
-    var min = date.getMinutes();
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hour = date.getHours();
+    let min = date.getMinutes();
     day = (day < 10 ? "0" : "") + day;
     month = (month < 10 ? "0" : "") + month;
     hour = (hour < 10 ? "0" + hour : hour);

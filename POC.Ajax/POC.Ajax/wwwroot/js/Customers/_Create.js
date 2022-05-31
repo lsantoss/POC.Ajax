@@ -35,17 +35,17 @@ function customersToCreateListAdd(name, birth, gender) {
 function prepareTableToCreateList() {
     if (customersToCreateList.length > 0) {
         $("#tbody-create-list").html("");
-        for (var i = 0; i < customersToCreateList.length; i++) {
-            let tdName = $("<td>").html(customersToCreateList[i].name);
-            let tdBirth = $("<td>").html(prepareDate_dd_MM_yyyy_HH_mm(customersToCreateList[i].birth));
-            let tdGender = $("<td>").html(prepareGenderText(customersToCreateList[i].gender));
-            let tr = $("<tr>").append(tdName, tdBirth, tdGender);
+        for (let i = 0; i < customersToCreateList.length; i++) {
+            const tdName = $("<td>").html(customersToCreateList[i].name);
+            const tdBirth = $("<td>").html(prepareDate_dd_MM_yyyy_HH_mm(customersToCreateList[i].birth));
+            const tdGender = $("<td>").html(prepareGenderText(customersToCreateList[i].gender));
+            const tr = $("<tr>").append(tdName, tdBirth, tdGender);
             $("#tbody-create-list").append(tr);
         }
     }
     else {
-        let td = $("<td>").prop("colspan", 3).prop("align", "center").text("No customers added to the list");
-        let tr = $("<tr>").append(td);
+        const td = $("<td>").prop("colspan", 3).prop("align", "center").text("No customers added to the list");
+        const tr = $("<tr>").append(td);
         $("#tbody-create-list").html(tr);
     }
 }

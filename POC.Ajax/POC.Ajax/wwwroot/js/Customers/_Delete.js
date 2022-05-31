@@ -1,5 +1,5 @@
 ﻿function deleteAjax() {
-    var customer = new Object();
+    const customer = new Object();
     customer.id = $("#Id").val();
 
     $.ajax({
