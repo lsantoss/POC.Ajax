@@ -21,7 +21,7 @@ function clearForm() {
     $("#Name").val("");
     $("#Birth").val("");
     $("#Gender").val("");
-    $("#BtnCreate").prop("disabled", false);
+    $("#btn-create").prop("disabled", false);
 }
 
 function customersToCreateListAdd(name, birth, gender) {
@@ -34,31 +34,30 @@ function customersToCreateListAdd(name, birth, gender) {
 
 function prepareTableToCreateList() {
     if (customersToCreateList.length > 0) {
-        $("#TbodyCreateList").html("");
+        $("#tbody-create-list").html("");
         for (var i = 0; i < customersToCreateList.length; i++) {
             let tdName = $("<td>").html(customersToCreateList[i].name);
             let tdBirth = $("<td>").html(prepareDate_dd_MM_yyyy_HH_mm(customersToCreateList[i].birth));
             let tdGender = $("<td>").html(prepareGenderText(customersToCreateList[i].gender));
             let tr = $("<tr>").append(tdName, tdBirth, tdGender);
-            $("#TbodyCreateList").append(tr);
+            $("#tbody-create-list").append(tr);
         }
     }
     else {
         let td = $("<td>").prop("colspan", 3).prop("align", "center").text("No customers added to the list");
         let tr = $("<tr>").append(td);
-        $("#TbodyCreateList").html(tr);
+        $("#tbody-create-list").html(tr);
     }
 }
 
 function prepareGenderText(value) {
-    if (value == "0") {
-        return "Male";
-    }
-    else if (value == "1") {
-        return "Female";
-    }
-    else if (value == "2") {
-        return "Other";
+    switch (value) {
+        case 0:
+            return "Male";
+        case 1:
+            return "Female";
+        case 2:
+            return "Other";
     }
 }
 
