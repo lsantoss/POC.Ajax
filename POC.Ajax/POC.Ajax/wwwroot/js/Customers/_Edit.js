@@ -4,10 +4,7 @@
     const birth = $("#Birth").val();
     const gender = $("#Gender").val();
 
-    if (id === undefined || id === null || id === "" ||
-        name === undefined || name === null || name === "" ||
-        birth === undefined || birth === null || birth === "" ||
-        gender === undefined || gender === null || gender === "") {
+    if (!isValid(id, name, birth, gender)) {
         toastr.info("All fields are mandatory!");
     }
     else {

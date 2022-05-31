@@ -5,9 +5,7 @@ function addToCreateList() {
     const birth = $("#Birth").val();
     const gender = $("#Gender").val();
 
-    if (name === undefined || name === null || name === "" ||
-        birth === undefined || birth === null || birth === "" ||
-        gender === undefined || gender === null || gender === "") {
+    if (!isValid(name, birth, gender)) {
         toastr.info("All fields are mandatory!");
     }
     else {

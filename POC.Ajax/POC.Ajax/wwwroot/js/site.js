@@ -18,6 +18,17 @@ toastr.options = {
 };
 
 //Common Functions
+function isValid(...fields) {
+    let valid = true;
+    for (let field of fields) {
+        if (field === undefined || field === null || field === "") {
+            valid = false;
+            break;
+		}
+    }
+    return valid;
+}
+
 function prepareDate_dd_MM_yyyy_HH_mm(date, separator = "/") {
     date = new Date(date);
     const year = date.getFullYear();
