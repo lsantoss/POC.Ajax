@@ -29,7 +29,7 @@ function isValid(...fields) {
     return valid;
 }
 
-function prepareDate_dd_MM_yyyy_HH_mm(date, separator = "/") {
+function formatDate_dd_MM_yyyy_HH_mm(date, separator = "/") {
     date = new Date(date);
     const year = date.getFullYear();
     let month = date.getMonth() + 1;

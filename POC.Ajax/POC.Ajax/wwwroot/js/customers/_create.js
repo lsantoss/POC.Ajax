@@ -35,7 +35,7 @@ function prepareTableToCreateList() {
         $("#tbody-create-list").html("");
         for (let i = 0; i < customersToCreateList.length; i++) {
             const tdName = $("<td>").html(customersToCreateList[i].name);
-            const tdBirth = $("<td>").html(prepareDate_dd_MM_yyyy_HH_mm(customersToCreateList[i].birth));
+            const tdBirth = $("<td>").html(formatDate_dd_MM_yyyy_HH_mm(customersToCreateList[i].birth));
             const tdGender = $("<td>").html(prepareGenderText(customersToCreateList[i].gender));
             const tr = $("<tr>").append(tdName, tdBirth, tdGender);
             $("#tbody-create-list").append(tr);
