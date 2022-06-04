@@ -10,13 +10,25 @@ namespace POC.Ajax.Controllers
         private static readonly List<CustomerViewModel> customers = new();
 
         [HttpGet]
-        public ActionResult Index() => View(customers.OrderBy(x => x.Id));
+        public ActionResult Index()
+        {
+            var list = customers.OrderBy(x => x.Id);
+            return View(list);
+        }
 
         [HttpGet]
-        public PartialViewResult List() => PartialView("_List", customers.OrderBy(x => x.Id));
+        public PartialViewResult List()
+        {
+            var list = customers.OrderBy(x => x.Id);
+            return PartialView("_List", list);
+        }
 
         [HttpGet]
-        public PartialViewResult Details(int id) => PartialView("_Details", customers.Where(x => x.Id == id).FirstOrDefault());
+        public PartialViewResult Details(int id)
+        {
+            var customer = customers.Where(x => x.Id == id).FirstOrDefault();
+            return PartialView("_Details", customer);
+        }
 
         [HttpGet]
         public PartialViewResult Create() => PartialView("_Create");
@@ -38,7 +50,11 @@ namespace POC.Ajax.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult Edit(int id) => PartialView("_Edit", customers.Where(x => x.Id == id).FirstOrDefault());
+        public PartialViewResult Edit(int id)
+        {
+            var customer = customers.Where(x => x.Id == id).FirstOrDefault();
+            return PartialView("_Edit", customer);
+        }
 
         [HttpPost]
         public JsonResult Edit([FromBody] CustomerViewModel request)
@@ -61,7 +77,11 @@ namespace POC.Ajax.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult Delete(int id) => PartialView("_Delete", customers.Where(x => x.Id == id).FirstOrDefault());
+        public PartialViewResult Delete(int id)
+        {
+            var customer = customers.Where(x => x.Id == id).FirstOrDefault();
+            return PartialView("_Delete", customer);
+        }
 
         [HttpPost]
         public JsonResult Delete([FromBody] CustomerViewModel request)
