@@ -1,4 +1,4 @@
-﻿var customersToCreateList = [];
+﻿var createList = [];
 
 function addToCreateList() {
     const name = $("#Name").val();
@@ -10,7 +10,7 @@ function addToCreateList() {
     }
     else {
         clearForm();
-        customersToCreateListAdd(name, birth, gender);
+        createList.push(new Customer(0, name, birth, gender));
         prepareTableToCreateList();
 	}
 }
@@ -22,21 +22,13 @@ function clearForm() {
     $("#btn-create").prop("disabled", false);
 }
 
-function customersToCreateListAdd(name, birth, gender) {
-    const customer = new Object();
-    customer.name = name;
-    customer.birth = birth;
-    customer.gender = parseInt(gender);
-    customersToCreateList.push(customer);
-}
-
 function prepareTableToCreateList() {
-    if (customersToCreateList.length > 0) {
+    if (createList.length > 0) {
         $("#tbody-create-list").html("");
-        for (let i = 0; i < customersToCreateList.length; i++) {
-            const tdName = $("<td>").html(customersToCreateList[i].name);
-            const tdBirth = $("<td>").html(formatDate_dd_MM_yyyy_HH_mm(customersToCreateList[i].birth));
-            const tdGender = $("<td>").html(prepareGenderText(customersToCreateList[i].gender));
+        for (let i = 0; i < createList.length; i++) {
+            const tdName = $("<td>").html(createList[i].name);
+            const tdBirth = $("<td>").html(formatDate_dd_MM_yyyy_HH_mm(createList[i].birth));
+            const tdGender = $("<td>").html(createList[i].getGenderDescription());
             const tr = $("<tr>").append(tdName, tdBirth, tdGender);
             $("#tbody-create-list").append(tr);
         }
@@ -48,23 +40,12 @@ function prepareTableToCreateList() {
     }
 }
 
-function prepareGenderText(value) {
-    switch (value) {
-        case 0:
-            return "Male";
-        case 1:
-            return "Female";
-        case 2:
-            return "Other";
-    }
-}
-
 function createAjax() {
-    if (customersToCreateList.length > 0) {
+    if (createList.length > 0) {
         $.ajax({
             url: '/Customer/Create/',
             type: 'POST',
-            data: JSON.stringify(customersToCreateList),
+            data: JSON.stringify(createList),
             dataType: 'json',
             contentType: 'application/json',
             async: false,

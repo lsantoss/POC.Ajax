@@ -8,18 +8,9 @@
         toastr.info("All fields are mandatory!");
     }
     else {
-        const customer = prepareCustomerData(id, name, birth, gender);
+        const customer = new Customer(id, name, birth, gender);
         editAjax(customer);
     }
-}
-
-function prepareCustomerData(id, name, birth, gender) {
-    const customer = new Object();
-    customer.id = parseInt(id);
-    customer.name = name;
-    customer.birth = birth;
-    customer.gender = parseInt(gender);
-    return customer;
 }
 
 function editAjax(customer) {
