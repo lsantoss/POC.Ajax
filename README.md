@@ -1,7 +1,7 @@
 # POC.Ajax
 
-## Aplicação:
-Essa aplicação contém um exemplo do uso de Ajax e PartialViews
+## Application:
+This application contains an example of using Ajax and PartialViews.
 
 ---
 
@@ -10,6 +10,10 @@ Essa aplicação contém um exemplo do uso de Ajax e PartialViews
 
 ---
 
-## Bibliotecas (principais):
+## Libraries (only most important):
+- Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
+- Microsoft.VisualStudio.Azure.Containers.Tools.Targets
+- Microsoft.VisualStudio.Web.CodeGeneration.Design
 - Jquery
 - Toastr
+- Bootstrap
