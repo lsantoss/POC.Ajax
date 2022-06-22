@@ -11,9 +11,9 @@ This application contains an example of using Ajax and PartialViews.
 ---
 
 ## Libraries (only most important):
+- Bootstrap
+- Jquery
 - Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
 - Microsoft.VisualStudio.Azure.Containers.Tools.Targets
 - Microsoft.VisualStudio.Web.CodeGeneration.Design
-- Jquery
 - Toastr
-- Bootstrap

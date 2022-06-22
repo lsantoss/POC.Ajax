@@ -5,10 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["POC.Ajax/POC.Ajax.csproj", "POC.Ajax/"]
-RUN dotnet restore "POC.Ajax/POC.Ajax.csproj"
+COPY ["src/POC.Ajax/POC.Ajax.csproj", "src/POC.Ajax/"]
+RUN dotnet restore "src/POC.Ajax/POC.Ajax.csproj"
 COPY . .
-WORKDIR "/src/POC.Ajax"
+WORKDIR "/src/src/POC.Ajax"
 RUN dotnet build "POC.Ajax.csproj" -c Release -o /app/build
 
 FROM build AS publish
