@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "POC.Ajax": {
+    "POC.Ajax - Development": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
