@@ -1,16 +1,15 @@
 # POC.Ajax
 
 ## Application:
+
 This application contains an example of using Ajax and PartialViews.
 
----
-
 ## Frameworks:
-- .Net 6
 
----
+- .Net 9
 
-## Libraries (only most important):
+## Dependencies (only most important):
+
 - Bootstrap
 - Jquery
 - Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation

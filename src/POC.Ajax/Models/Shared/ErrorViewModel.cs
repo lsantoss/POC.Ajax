@@ -1,8 +1,7 @@
-﻿namespace POC.Ajax.Models.Shared
+﻿namespace POC.Ajax.Models.Shared;
+
+public class ErrorViewModel
 {
-    public class ErrorViewModel
-    {
-        public string RequestId { get; set; }
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-    }
+    public string RequestId { get; set; }
+    public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 }
