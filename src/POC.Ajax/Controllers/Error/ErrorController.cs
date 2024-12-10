@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using POC.Ajax.Models.Shared;
+using POC.Ajax.Models.Error;
 using System.Diagnostics;
 
-namespace POC.Ajax.Controllers.Shared;
+namespace POC.Ajax.Controllers.Error;
 
 public class ErrorController : Controller
 {

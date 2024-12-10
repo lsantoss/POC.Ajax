@@ -1,4 +1,4 @@
-﻿namespace POC.Ajax.Models.Shared;
+﻿namespace POC.Ajax.Models.Error;
 
 public class ErrorViewModel
 {

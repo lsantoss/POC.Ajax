@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using POC.Ajax.Models.Customers;
+using POC.Ajax.Models.Customer;
 
-namespace POC.Ajax.Controllers.Customers;
+namespace POC.Ajax.Controllers.Customer;
 
 public class CustomerController : Controller
 {

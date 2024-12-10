@@ -1,6 +1,6 @@
 ﻿using POC.Ajax.Enums;
 
-namespace POC.Ajax.Models.Customers;
+namespace POC.Ajax.Models.Customer;
 
 public class CustomerViewModel
 {
